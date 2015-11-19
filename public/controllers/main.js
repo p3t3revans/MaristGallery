@@ -21,7 +21,7 @@ angular.module('MyApp')
     };
 
     $scope.filterByAlphabet = function(char) {
-      $scope.shows = Show.query({ alphabet: char });
+      $scope.shows = Show.query({ name: char });
       $scope.headingTitle = char;
     };
   }]);

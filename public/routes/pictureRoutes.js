@@ -5,37 +5,40 @@ var routes = function (Picture) {
 
 	pictureRouter.route('/')
 		.post(function (req, res, next) {
-			console.log(' \\\(^o^\)/ at the picture api');
-			console.log(req.body.title);
-			console.log(req.body.artist);
-			// console.log(req.body.picture);
+			//console.log(' \\\(^o^\)/ at the picture api');
+			//console.log(req.body.title);
+			//console.log(req.body.artist);
 			var picture = new Picture({
 				title: req.body.title,
 				artist: req.body.artist,
 				picture: req.body.picture
 			});
-			//console.log(req.body.picture);
 			picture.save(function (err) {
 				if (err) return next(err);
 				res.sendStatus(200);
 			});
-			//var fs = require('fs');
-			// $scope.imageString = fs.readFileSync(element.files[0]).toString('base64');
-			//var pictureFileString = fs.readFileSync(req.body.file).toString('base64');
-			//var pictureFileString = fs.readFileSync(req.body).toString('base64');
-			//console.log(pictureFileString);
-			//var picture = new Picture({
-			//   picture: pictureFileString
-			//});
-			// picture.save(function (err) {
-			// if (err) {
-			//  console.log(err);
-			//  return next(err);
-			//  }
-			// res.send(200);
-			// });
 		});
+	pictureRouter.route('/').get(function (req, res, next) {
+		var query = Picture.find();
+		if (req.query.genre) {
+			query.where({ artist: req.query.artist });
+		} else if (req.query.medium) {
+			query.where({ medium: new RegExp('^' + '[' + req.query.medium + ']', 'i') });
+		} else {
+			query.limit(12);
+		}
+		query.exec(function (err, pictures) {
+			if (err) return next(err);
+			res.send(pictures);
+		});
+	});
 
+	pictureRouter.route('/:id').get(function (req, res, next) {
+		Picture.findById(req.params.id, function (err, picture) {
+			if (err) return next(err);
+			res.send(picture);
+		});
+	});
 	return pictureRouter;
 };
 module.exports = routes;

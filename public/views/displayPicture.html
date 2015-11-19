@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">Display Picture</div>
+    <div class="panel-body">
+      <form class="form" method="post" ng-submit="submitPicture()" name="pictureForm">
+        <div class="form-group" ng-class="{ 'has-success' : pictureForm.pictureName.$valid && pictureForm.pictureName.$dirty, 'has-error' : addpictureFormForm.pictureName.$invalid && pictureForm.pictureName.$dirty }">
+          <input class="form-control" type="text" name="pictureName" ng-model="pictureName" placeholder="Enter picture name" required
+          autofocus>
+          <input type="file" onchange="angular.element(this).scope().addPicture(this)">
+          <div id="base"></div>
+          <div id="myDiv">
+            <img id="img" src="" />
+            <p>{{pictureString}}</p>
+          </div>
+          <div id="base"></div>
+          <div class="help-block text-danger" ng-if="pictureForm.pictureName.$dirty" ng-messages="pictureForm.pictureName.$error">
+            <div ng-message="required">Picture name is required.</div>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-disabled="pictureForm.$invalid">Add</button>
+      </form>
+    </div>
+  </div>
+</div>

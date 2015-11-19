@@ -19,77 +19,9 @@ var Picture = require('./public/models/pictureModel');
 var Show = require('./public/models/showModel');
 
 var User = require('./public/models/userModel');
-/*
-var PictueSchema = new mongoose.Schema(
-  {
-    name: String,
-    fileName: String,
-    picture: String
-  }
-  );
-  */
-/*
-var showSchema = new mongoose.Schema({
-_id: Number,
-name: String,
-airsDayOfWeek: String,
-airsTime: String,
-firstAired: Date,
-genre: [String],
-network: String,
-overview: String,
-rating: Number,
-ratingCount: Number,
-status: String,
-poster: String,
-subscribers: [{
-  type: mongoose.Schema.Types.ObjectId, ref: 'User'
-}],
-episodes: [{
-  season: Number,
-  episodeNumber: Number,
-  episodeName: String,
-  firstAired: Date,
-  overview: String
-}]
-});
 
-var userSchema = new mongoose.Schema({
-email: { type: String, unique: true },
-password: String
-});
-
-userSchema.pre('save', function (next) {
-var user = this;
-if (!user.isModified('password')) return next();
-bcrypt.genSalt(10, function (err, salt) {
-  if (err) return next(err);
-  bcrypt.hash(user.password, salt, function (err, hash) {
-    if (err) return next(err);
-    user.password = hash;
-    next();
-  });
-});
-});
-
-userSchema.methods.comparePassword = function (candidatePassword, cb) {
-bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
-  if (err) return cb(err);
-  cb(null, isMatch);
-});
-};
-*/
 var multipart = require('connect-multiparty');
 
-//app.use(multipart({
-//   uploadDir: 'localhost\upload'
-//}));
-
-//var User = mongoose.model('User', userSchema);
-//var Show = mongoose.model('Show', showSchema);
-//var Picture = mongoose.model('Picture', PictueSchema);
-//var UploadData = mongoose.model('UploadData', UploadSchema);
-//mongoose.connect('localhost/picture');
 
 var express = require('express');
 var path = require('path');
@@ -149,9 +81,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//showRouter = require('./public/routes/showRoutes')(Show);
-//app.use('/api/shows', showRouter); 
-
+showRouter = require('./public/routes/showRoutes')(Show);
+app.use('/api/shows', showRouter); 
+/*
 app.get('/api/shows', function (req, res, next) {
   var query = Show.find();
   if (req.query.genre) {
@@ -173,7 +105,7 @@ app.get('/api/shows/:id', function (req, res, next) {
     res.send(show);
   });
 });
-
+*/
 app.use(function (err, req, res, next) {
   console.error(err.stack);
   res.send(500, { message: err.message });
@@ -199,78 +131,13 @@ app.get('/api/logout', function (req, res, next) {
   req.logout();
   res.send(200);
 });
-/*
-app.post('/api/upload', function (req, res, next) {
-  console.log('  \\\(^o^\)/ at the upload api');
- //  var data = _.pick(req.body, 'type')
-        //, uploadPath = path.normalize(cfg.data + '/uploads')
- //       , file = req.files.file;
-  console.log(req.body);
-  console.log(req.body.file.$ngfDataUrl);
-  var uploadData = new UploadData({
-    userName: req.body.file.name,
-    fileData: req.body.data,
-  });
-  //console.log(req.body.picture);
-  uploadData.save(function (err) {
-    if (err) return next(err);
-    res.send(200);
-  });
-  //var fs = require('fs');
-  // $scope.imageString = fs.readFileSync(element.files[0]).toString('base64');
-  //var pictureFileString = fs.readFileSync(req.body.file).toString('base64');
-  //var pictureFileString = fs.readFileSync(req.body).toString('base64');
-  //console.log(pictureFileString);
-  //var picture = new Picture({
-  //   picture: pictureFileString
-  //});
-  // picture.save(function (err) {
-  // if (err) {
-  //  console.log(err);
-  //  return next(err);
-  //  }
-  // res.send(200);
-  // });
-});
-*/
+
 uploadRouter = require('./public/routes/uploadRoutes')(Picture);
 app.use('/api/upload', uploadRouter);
 
 pictureRouter = require('./public/routes/pictureRoutes')(Picture);
 app.use('/api/picture', pictureRouter); 
-/*
-app.post('/api/picture', function (req, res, next) {
-  console.log(' \\\(^o^\)/ at the picture api');
-  console.log(req.body.name);
-  console.log(req.body.fileName);
-  // console.log(req.body.picture);
-  var picture = new Picture({
-    name: req.body.name,
-    fileName: req.body.fileName,
-    picture: req.body.picture
-  });
-  //console.log(req.body.picture);
-  picture.save(function (err) {
-    if (err) return next(err);
-    res.sendStatus(200);
-  });
-  //var fs = require('fs');
-  // $scope.imageString = fs.readFileSync(element.files[0]).toString('base64');
-  //var pictureFileString = fs.readFileSync(req.body.file).toString('base64');
-  //var pictureFileString = fs.readFileSync(req.body).toString('base64');
-  //console.log(pictureFileString);
-  //var picture = new Picture({
-  //   picture: pictureFileString
-  //});
-  // picture.save(function (err) {
-  // if (err) {
-  //  console.log(err);
-  //  return next(err);
-  //  }
-  // res.send(200);
-  // });
-});
-*/
+
 app.use(function (req, res, next) {
   if (req.user) {
     res.cookie('user', JSON.stringify(req.user));

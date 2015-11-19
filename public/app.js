@@ -1,4 +1,4 @@
-angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap','ngFileUpload',])
+angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mgcrea.ngStrap', 'ngFileUpload', ])
   .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
     $locationProvider.html5Mode(true);
     $routeProvider
@@ -22,13 +22,17 @@ angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mg
         templateUrl: 'views/add.html',
         controller: 'AddCtrl'
       })
-            .when('/upload', {
+      .when('/upload', {
         templateUrl: 'views/upload.html',
         controller: 'MyCtrl'
       })
-            .when('/picture', {
+      .when('/picture', {
         templateUrl: 'views/picture.html',
         controller: 'PictureCtrl'
+      })
+      .when('/listpicture', {
+        templateUrl: 'views/listpictures.html',
+        controller: 'ListPictureCtrl'
       })
       .otherwise({
         redirectTo: '/'

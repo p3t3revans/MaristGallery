@@ -1,0 +1,36 @@
+<section  data-ng-init="find()">
+  
+  <div id="select">
+    <div>
+      <!--Sidebar content-->
+
+      Search:
+      <input ng-model="query"> Sort by:
+      <select ng-model="orderProp" >
+        <option value="title">Alphabetical</option>
+        <option value="artist" >Artist</option>
+      </select>
+
+    </div>
+  </div>
+  <ul class="works unstyled">
+    <li data-ng-repeat="picture in pictures | filter:query | orderBy:orderProp">
+        <h2>
+        <a data-ng-href="/picture/{{picture._id}}">{{work.title}}</a>
+        <span data-ng-if="hasAuthorization(picture)">
+          <a class="btn" href="/picture/{{picture._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+          </a>
+          <a class="btn" data-ng-click="remove(work);">
+            <i class="glyphicon glyphicon-trash"></i>
+          </a>
+        </span>
+      </h2>
+        <div id="smallDiv">
+          <img src="{{picture.picture}}"></img>
+          <p id="workcontent">{{picture.artist}}<br>{{picture.title}}<br>{{picture.medium}}</p>
+        </div>
+    </li>
+  </ul>
+  <h1 data-ng-hide="!pictures || pictures.length">No works yet. <br> Why don't you <a href="/pictures/create">Create One</a>?</h1>
+</section>

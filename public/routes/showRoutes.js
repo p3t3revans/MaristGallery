@@ -23,7 +23,7 @@ showRouter.route('/').get(function (req, res, next) {
 });
 
 showRouter.route('/:id').get(function (req, res, next) {
-  Show.findById(req.params.id, function (err, show) {
+  showRouter.findById(req.params.id, function (err, show) {
     if (err) return next(err);
     res.send(show);
   });
