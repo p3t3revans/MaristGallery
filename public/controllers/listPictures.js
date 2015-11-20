@@ -5,7 +5,7 @@ angular.module('MyApp')
       'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
       'Y', 'Z'];
 
-    $scope.medium = ['Work on Paper', 'Work on Canvas', 'Drawing', 'Photograph', 'Clay',
+    $scope.mediums = ['Work on Paper', 'Work on Canvas', 'Drawing', 'Photograph', 'Clay',
       'Sculpture'];
 
     $scope.headingTitle = 'Top 12 Picture';

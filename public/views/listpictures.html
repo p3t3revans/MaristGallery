@@ -1,35 +1,51 @@
-<section  data-ng-init="find()">
-  
+<section data-ng-init="find()">
+  <div class="jumbotron">
+    <div class="container">
+      <ul class="alphabet">
+        <li ng-repeat="char in alphabet">
+          <span ng-click="filterByAlphabet(char)">{{char}}</span>
+        </li>
+      </ul>
+      <ul class="genres">
+        <li ng-repeat="medium in mediums">
+          <span ng-click="filterByMedium(medium)">{{medium}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <div id="select">
     <div>
       <!--Sidebar content-->
 
       Search:
       <input ng-model="query"> Sort by:
-      <select ng-model="orderProp" >
+      <select ng-model="orderProp">
         <option value="title">Alphabetical</option>
-        <option value="artist" >Artist</option>
+        <option value="artist">Artist</option>
       </select>
 
     </div>
   </div>
   <ul class="works unstyled">
     <li data-ng-repeat="picture in pictures | filter:query | orderBy:orderProp">
-        <h2>
+      <h2>
         <a data-ng-href="/picture/{{picture._id}}">{{work.title}}</a>
-        <span data-ng-if="hasAuthorization(picture)">
+       <!--<span data-ng-if="hasAuthorization(picture)">-->
           <a class="btn" href="/picture/{{picture._id}}/edit">
             <i class="glyphicon glyphicon-edit"></i>
           </a>
-          <a class="btn" data-ng-click="remove(work);">
+          <a class="btn" data-ng-click="remove(picture);">
             <i class="glyphicon glyphicon-trash"></i>
           </a>
         </span>
       </h2>
-        <div id="smallDiv">
-          <img src="{{picture.picture}}"></img>
-          <p id="workcontent">{{picture.artist}}<br>{{picture.title}}<br>{{picture.medium}}</p>
-        </div>
+      <div id="smallDiv">
+        <img src="{{picture.picture}}"></img>
+        <p id="workcontent">{{picture.artist}}
+          <br>{{picture.title}}
+          <br>{{picture.medium}}</p>
+      </div>
     </li>
   </ul>
   <h1 data-ng-hide="!pictures || pictures.length">No works yet. <br> Why don't you <a href="/pictures/create">Create One</a>?</h1>
