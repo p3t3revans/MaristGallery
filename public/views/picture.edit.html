@@ -1,0 +1,38 @@
+<section data-ng-init="findById()">
+  <form name="workForm" class="form-horizontal col-md-6" role="form" data-ng-submit="update(workForm.$valid)" novalidate>
+    <div class="form-group" ng-class="{ 'has-error' : submitted && workForm.title.$invalid }">
+      <label mean-token="'edit-title'" for="title" class="col-md-2 control-label">Title</label>
+      <div class="col-md-10">
+        <input name="title" type="text" class="form-control" data-ng-model="work.title" id="title" placeholder="Title" required>
+        <div ng-show="submitted && workForm.title.$invalid" class="help-block">
+          <p ng-show="workForm.title.$error.required">Title is required</p>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : submitted && workForm.workImageURL.$invalid }">
+      <label for="image" class="col-md-3 control-label">Image</label>
+      <div class="col-md-9">
+        <label for="image" class="col-md-3 control-label">Image</label>
+        <input id="image" type="file" onchange="angular.element(this).scope().addPicture(this)">
+        <div id="myDiv">
+          <img src="{{picture.picture}}" style="margin:auto;" ng-style=""></img>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : submitted && workForm.content.$invalid }">
+      <label mean-token="'edit-content'" for="content" class="col-md-2 control-label">Content</label>
+      <div class="col-md-10">
+        <input class="form-control" type="text" name="pictureName" ng-model="pictureName" placeholder="Enter picture name" required
+        </input>
+        <div ng-show="submitted && workForm.content.$invalid" class="help-block">
+          <p ng-show="workForm.content.$error.required">Title is required</p>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <button mean-token="'edit-submit'" type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+  </form>
+</section>

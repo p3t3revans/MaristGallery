@@ -13,10 +13,10 @@
       </ul>
     </div>
   </div>
-
+  <!--
   <div id="select">
     <div>
-      <!--Sidebar content-->
+
 
       Search:
       <input ng-model="query"> Sort by:
@@ -26,19 +26,20 @@
       </select>
 
     </div>
+    
+    
   </div>
   <ul class="works unstyled">
     <li data-ng-repeat="picture in pictures | filter:query | orderBy:orderProp">
       <h2>
-        <a data-ng-href="/picture/{{picture._id}}">{{work.title}}</a>
-       <!--<span data-ng-if="hasAuthorization(picture)">-->
+ 
           <a class="btn" href="/picture/{{picture._id}}/edit">
             <i class="glyphicon glyphicon-edit"></i>
           </a>
           <a class="btn" data-ng-click="remove(picture);">
             <i class="glyphicon glyphicon-trash"></i>
           </a>
-        </span>
+   
       </h2>
       <div id="smallDiv">
         <img src="{{picture.picture}}"></img>
@@ -48,5 +49,34 @@
       </div>
     </li>
   </ul>
+  <h1 data-ng-hide="!pictures || pictures.length">No works yet. <br> Why don't you <a href="/pictures/create">Create One</a>?</h1>
+</section>
+-->
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{headingTitle}}
+        <div class="pull-right">
+          <input class="search" type="text" ng-model="query.name" placeholder="Search...">
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="row show-list">
+          <div class="col-xs-4 col-md-3" ng-repeat="picture in pictures | filter:query | orderBy:orderProp">
+            <a href="/picture/{{picture._id}}">
+              <img class="img-rounded" ng-src="{{picture.picture}}" width="100%" />
+            </a>
+            <a class="btn" data-ng-click="remove(picture);">
+              <i class="glyphicon glyphicon-trash"></i>
+            </a>
+            <div class="text-center">
+              <a href="/picture/{{picture._id}}">{{show.name}}</a>
+              <!-- <p class="text-muted">Episodes: {{show.episodes.length}}</p>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <h1 data-ng-hide="!pictures || pictures.length">No works yet. <br> Why don't you <a href="/pictures/create">Create One</a>?</h1>
 </section>

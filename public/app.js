@@ -34,6 +34,18 @@ angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mg
         templateUrl: 'views/listpictures.html',
         controller: 'ListPictureCtrl'
       })
+      .when('/picture/:id/delete', {
+        templateUrl: 'views/listpictures.html',
+        controller: 'ListPictureCtrl'
+      })
+      .when('/picture/:id/edit', {
+        templateUrl: 'views/picture.edit.html',
+        controller: 'PictureEditCtrl'
+      })
+      .when('/picture/:id', {
+        templateUrl: 'views/displayPicture.html',
+        controller: 'PictureEditCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

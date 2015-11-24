@@ -72,8 +72,12 @@ app.set('port', process.env.PORT || 3000);
 app.use(logger('dev'));
 //app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded());
+
+//this was needed for the loading of images
+//don't lose this
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
+
 //console.log('limit file size = ' +limit);
 app.use(cookieParser());
 app.use(session({ secret: 'keyboard cat' }));
@@ -83,33 +87,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 showRouter = require('./public/routes/showRoutes')(Show);
 app.use('/api/shows', showRouter); 
-/*
-app.get('/api/shows', function (req, res, next) {
-  var query = Show.find();
-  if (req.query.genre) {
-    query.where({ genre: req.query.genre });
-  } else if (req.query.alphabet) {
-    query.where({ name: new RegExp('^' + '[' + req.query.alphabet + ']', 'i') });
-  } else {
-    query.limit(12);
-  }
-  query.exec(function (err, shows) {
-    if (err) return next(err);
-    res.send(shows);
-  });
-});
-
-app.get('/api/shows/:id', function (req, res, next) {
-  Show.findById(req.params.id, function (err, show) {
-    if (err) return next(err);
-    res.send(show);
-  });
-});
-*/
-app.use(function (err, req, res, next) {
-  console.error(err.stack);
-  res.send(500, { message: err.message });
-});
 
 app.post('/api/login', passport.authenticate('local'), function (req, res) {
   res.cookie('user', JSON.stringify(req.user));
@@ -137,6 +114,9 @@ app.use('/api/upload', uploadRouter);
 
 pictureRouter = require('./public/routes/pictureRoutes')(Picture);
 app.use('/api/picture', pictureRouter); 
+
+deletePictureRouter = require('./public/routes/deletePictureRoutes')(Picture);
+app.use('/api/picture', deletePictureRouter); 
 
 app.use(function (req, res, next) {
   if (req.user) {
@@ -228,6 +208,11 @@ app.post('/api/shows', function (req, res, next) {
       res.send(200);
     });
   });
+});
+
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.send(500, { message: err.message });
 });
 
 app.listen(app.get('port'), function () {

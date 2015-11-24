@@ -5,9 +5,6 @@ var routes = function (Picture) {
 
 	pictureRouter.route('/')
 		.post(function (req, res, next) {
-			//console.log(' \\\(^o^\)/ at the picture api');
-			//console.log(req.body.title);
-			//console.log(req.body.artist);
 			var picture = new Picture({
 				title: req.body.title,
 				artist: req.body.artist,
@@ -34,11 +31,22 @@ var routes = function (Picture) {
 	});
 
 	pictureRouter.route('/:id').get(function (req, res, next) {
+		console.log(' \\\(^o^\)/ at the get by id api');
 		Picture.findById(req.params.id, function (err, picture) {
+			
 			if (err) return next(err);
 			res.send(picture);
 		});
 	});
+//might be able to use this
+//	pictureRouter.route('/:id').delete(function (req, res, next) {
+//		    console.log(' \\\(^o^\)/ at the remove api');
+//			Picture.remove(req.params.id, function (err, picture) {
+///				if (err) return next(err);
+//				res.send(picture);
+//			});
+	//});
+	
 	return pictureRouter;
 };
 module.exports = routes;

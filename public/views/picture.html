@@ -7,12 +7,11 @@
           <input class="form-control" type="text" name="pictureName" ng-model="pictureName" placeholder="Enter picture name" required
           autofocus>
           <input type="file" onchange="angular.element(this).scope().addPicture(this)">
-          <div id="base"></div>
-          <div id="myDiv">
-            <img id="img" src="" />
-            <p>{{pictureString}}</p>
+          <!--<div id="base"></div>-->
+          <div id="myDiv" >
+            <img id="img" class="media-object img-rounded" src="" />
           </div>
-          <div id="base"></div>
+         <!-- <div id="base"></div>-->
           <div class="help-block text-danger" ng-if="pictureForm.pictureName.$dirty" ng-messages="pictureForm.pictureName.$error">
             <div ng-message="required">Picture name is required.</div>
           </div>

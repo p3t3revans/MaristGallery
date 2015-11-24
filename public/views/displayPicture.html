@@ -1,3 +1,4 @@
+<!--
 <div class="container">
   <div class="panel panel-default">
     <div class="panel-heading">Display Picture</div>
@@ -22,3 +23,24 @@
     </div>
   </div>
 </div>
+-->
+  <div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="media">
+        <div class="pull-left">
+          <img class="media-object img-rounded" ng-src="{{picture.picture}}">
+
+        </div>
+        <div class="media-body">
+          <h2 class="media-heading">
+            {{picture.title}}
+            <span class="pull-right text-danger">{{picture.artist}}</span>
+          </h2>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
