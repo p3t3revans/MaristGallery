@@ -6,7 +6,7 @@ var routes = function (Picture) {
 
 	deletePictureRouter.route('/:id').delete(function (req, res, next) {
 
-	//	console.log(' \\\(^o^\)/ at the remove api');
+	// 	console.log(' \\\(^o^\)/ at the remove api');
 		Picture.findById(req.params.id, function (err, picture) {
 			if (err) return next(err);
 			picture.remove(function (err) {

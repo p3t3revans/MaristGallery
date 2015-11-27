@@ -16,7 +16,7 @@ angular.module('MyApp')
       if (element.files && element.files[0]) {
         var FR = new FileReader();
         FR.onload = function (e) {
-          $('#img').attr("src", e.target.result);//what is this might not need to do the folloeing step
+          $('#img').attr("src", e.target.result);// what is this might not need to do the folloeing step
           // $('#base').text(e.target.result);
           $scope.picture.picture = e.target.result;//.toString('base64');
           //fileNameS = element.files[0].name;

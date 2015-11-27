@@ -22,7 +22,7 @@ angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mg
         templateUrl: 'views/signup.html',
         controller: 'SignupCtrl'
       })
- //     .when('/add', {
+ //      .when('/add', {
   //      templateUrl: 'views/add.html',
   //      controller: 'AddCtrl'
  //     })

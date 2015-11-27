@@ -5,7 +5,7 @@ angular.module('MyApp')
       
       var pictureString = '';
       var fileNameS = '';
-      //var nameS = this.pictureName;//$rootScope.currentUser.email;
+      // var nameS = this.pictureName;//$rootScope.currentUser.email;
 /*
       $scope.findById = function (){
                Picture.get({ _id: $routeParams.id }, function(picture) {

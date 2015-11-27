@@ -15,7 +15,7 @@ angular.module('MyApp')
         $scope.pictures = pictures;
       });
     };
-    //$scope.pictures = Picture.query();{ id: picture._id }
+    // $scope.pictures = Picture.query();{ id: picture._id }
     $scope.remove = function (picture) {
       DeletePicture.deletePicture({ id: picture._id }).success(function () {
         ListPicture.query(function (pictures) {
