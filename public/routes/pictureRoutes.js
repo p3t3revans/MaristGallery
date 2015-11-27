@@ -8,7 +8,8 @@ var routes = function (Picture) {
 			var picture = new Picture({
 				title: req.body.title,
 				artist: req.body.artist,
-				picture: req.body.picture
+				picture: req.body.picture,
+				medium : req.body.medium
 			});
 			picture.save(function (err) {
 				if (err) return next(err);
@@ -31,22 +32,44 @@ var routes = function (Picture) {
 	});
 
 	pictureRouter.route('/:id').get(function (req, res, next) {
-		console.log(' \\\(^o^\)/ at the get by id api');
 		Picture.findById(req.params.id, function (err, picture) {
-			
+
 			if (err) return next(err);
 			res.send(picture);
 		});
 	});
-//might be able to use this
-//	pictureRouter.route('/:id').delete(function (req, res, next) {
-//		    console.log(' \\\(^o^\)/ at the remove api');
-//			Picture.remove(req.params.id, function (err, picture) {
-///				if (err) return next(err);
-//				res.send(picture);
-//			});
-	//});
 	
+	pictureRouter.route('/:id').delete(function (req, res, next) {
+
+	//	console.log(' \\\(^o^\)/ at the remove api');
+		Picture.findById(req.params.id, function (err, picture) {
+			if (err) return next(err);
+			picture.remove(function (err) {
+				if (err) return next(err);
+				res.send(200);
+			});
+		});
+			
+
+	});
+	
+	pictureRouter.route('/:id').put(function (req, res, next) {
+		Picture.findById(req.body._id, function (err, picture) {
+			if (err) return next(err);
+			else {
+				picture.picture = req.body.picture;
+				picture.artist = req.body.artist;
+				picture.title = req.body.title;
+				picture.medium = req.body.medium;
+				picture.save(function (err) {
+					if (err) return next(err);
+					res.send(picture);
+				});
+			};
+
+		});
+	});
+
 	return pictureRouter;
 };
 module.exports = routes;

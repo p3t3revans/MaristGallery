@@ -66,9 +66,14 @@
             <a href="/picture/{{picture._id}}">
               <img class="img-rounded" ng-src="{{picture.picture}}" width="100%" />
             </a>
-            <a class="btn" data-ng-click="remove(picture);">
+            <span>
+              <a class="btn" href="/picture/{{picture._id}}/edit">
+                <i class="glyphicon glyphicon-edit"></i>
+              </a>
+              <a class="btn" data-ng-click="remove(picture);">
               <i class="glyphicon glyphicon-trash"></i>
-            </a>
+              </a>
+            </span>
             <div class="text-center">
               <a href="/picture/{{picture._id}}">{{show.name}}</a>
               <!-- <p class="text-muted">Episodes: {{show.episodes.length}}</p>-->

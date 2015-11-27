@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ShowTrackr</title>
+  <title>MaristOnlineGallery</title>
   <link rel="icon" type="image/png" href="favicon.png" />
   <link href="stylesheets/style.css" rel="stylesheet">
   <link href="stylesheets/works.css" rel="stylesheet">
@@ -17,15 +17,15 @@
   <div ng-controller="NavbarCtrl" class="navbar navbar-default navbar-static-top" role="navigation" bs-navbar>
     <div class="navbar-header">
       <a class="navbar-brand" href="/">
-        <span class="glyphicon glyphicon-film"></span> Show
-        <strong>Trackr</strong></a>
+        <span class="glyphicon glyphicon-pencil"></span> Marist 
+        <strong>Online Art Gallery</strong></a>
     </div>
     <ul class="nav navbar-nav">
       <li data-match-route="/$"><a href="/">Home</a></li>
-      <li data-match-route="/add"><a href="/add">Add</a></li>
+<!--      <li data-match-route="/add"><a href="/add">Add</a></li>  -->
       <li data-match-route="/picture"><a href="/picture">Add Picture</a></li>
       <li data-match-route="/listpicture"><a href="/listpicture">List Pictures</a></li>
-      <li data-match-route="/upload"><a href="/upload">Upload</a></li>
+  <!--    <li data-match-route="/upload"><a href="/upload">Upload</a></li> -->
     </ul>
     <ul class="nav navbar-nav pull-right" ng-if="!currentUser">
       <li data-match-route="/login"><a href="/login">Login</a></li>
@@ -62,6 +62,7 @@
   <script src="controllers/navbar.js"></script>
   <script src="controllers/picture.js"></script>
   <script src="controllers/picture.edit.js"></script>
+  <script src="controllers/displayPicture.js"></script>
   <script src="services/show.js"></script>
   <script src="services/auth.js"></script>
   <script src="services/subscription.js"></script>

@@ -3,17 +3,26 @@
     <div class="panel-heading">Add Picture</div>
     <div class="panel-body">
       <form class="form" method="post" ng-submit="submitPicture()" name="pictureForm">
-        <div class="form-group" ng-class="{ 'has-success' : pictureForm.pictureName.$valid && pictureForm.pictureName.$dirty, 'has-error' : addpictureFormForm.pictureName.$invalid && pictureForm.pictureName.$dirty }">
-          <input class="form-control" type="text" name="pictureName" ng-model="pictureName" placeholder="Enter picture name" required
+        <div class="form-group" ng-class="{ 'has-success' : pictureForm.pictureTitle.$valid && pictureForm.pictureTitle.$dirty, 'has-error' : addpictureFormForm.pictureTitle.$invalid && pictureForm.pictureTitle.$dirty }">
+          <label for="pictureTitle"> Title : </label>
+          <input class="form-control" type="text" name="pictureTitle" ng-model="picture.title" width="400px" placeholder="Enter picture title" required
           autofocus>
+          <br>
+          <label for="pictureArtist"> Artist : </label>
+          <input class="form-control" type="text" name="pictureArtist" ng-model="picture.artist" width="400px" placeholder="Enter Artist" required>
+          <br>
+          <label for="pictureMedium"> Medium : </label>
+          <select name="pictureMedium" id="mySelect" ng-options="option.name for option in data.availableOptions track by option.id"
+          ng-model="data.selectedOption" width="200px"></select>
+          <br><br><br>
           <input type="file" onchange="angular.element(this).scope().addPicture(this)">
           <!--<div id="base"></div>-->
-          <div id="myDiv" >
+          <div id="myDiv">
             <img id="img" class="media-object img-rounded" src="" />
           </div>
-         <!-- <div id="base"></div>-->
-          <div class="help-block text-danger" ng-if="pictureForm.pictureName.$dirty" ng-messages="pictureForm.pictureName.$error">
-            <div ng-message="required">Picture name is required.</div>
+          <!-- <div id="base"></div>-->
+          <div class="help-block text-danger" ng-if="pictureForm.pictureTitle.$dirty" ng-messages="pictureForm.pictureTitle.$error">
+            <div ng-message="required">Picture title is required.</div>
           </div>
         </div>
         <button class="btn btn-primary" type="submit" ng-disabled="pictureForm.$invalid">Add</button>

@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('ListPictureCtrl', ['$scope', 'ListPicture', 'DeletePicture', function ($scope, ListPicture, DeletePicture) {
+  .controller('ListPictureCtrl', ['$scope', 'ListPicture',  'DeletePicture',  function ($scope, ListPicture,  DeletePicture) {
 
     $scope.alphabet = ['0-9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
       'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',

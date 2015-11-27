@@ -9,7 +9,6 @@ var routes = function (Picture) {
 	//	console.log(' \\\(^o^\)/ at the remove api');
 		Picture.findById(req.params.id, function (err, picture) {
 			if (err) return next(err);
-
 			picture.remove(function (err) {
 				if (err) return next(err);
 				res.send(200);

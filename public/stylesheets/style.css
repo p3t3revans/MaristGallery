@@ -3953,7 +3953,7 @@ tbody.collapse.in {
   .navbar-default .navbar-brand {
     color: #333; }
     .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-      color: #ffe939;
+      color: skyblue;
       background-color: #333; }
   .navbar-default .navbar-text {
     color: #777; }
@@ -5936,7 +5936,7 @@ em {
   padding-left: 15px; }
 
 .navbar-brand {
-  background-color: #ffe939;
+  background-color: skyblue;
   transition: 0.25s all;
   margin-left: -15px; }
 

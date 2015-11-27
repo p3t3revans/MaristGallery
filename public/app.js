@@ -3,13 +3,17 @@ angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mg
     $locationProvider.html5Mode(true);
     $routeProvider
       .when('/', {
-        templateUrl: 'views/home.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/listpictures.html',
+        controller: 'ListPictureCtrl'
       })
-      .when('/shows/:id', {
-        templateUrl: 'views/detail.html',
-        controller: 'DetailCtrl'
-      })
+  //    .when('/', {
+  //      templateUrl: 'views/home.html',
+  //      controller: 'MainCtrl'
+   //   })
+  //    .when('/shows/:id', {
+  //      templateUrl: 'views/detail.html',
+ //       controller: 'DetailCtrl'
+  //    })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
@@ -18,14 +22,14 @@ angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mg
         templateUrl: 'views/signup.html',
         controller: 'SignupCtrl'
       })
-      .when('/add', {
-        templateUrl: 'views/add.html',
-        controller: 'AddCtrl'
-      })
-      .when('/upload', {
-        templateUrl: 'views/upload.html',
-        controller: 'MyCtrl'
-      })
+ //     .when('/add', {
+  //      templateUrl: 'views/add.html',
+  //      controller: 'AddCtrl'
+ //     })
+  //    .when('/upload', {
+   //     templateUrl: 'views/upload.html',
+  //      controller: 'MyCtrl'
+   //   })
       .when('/picture', {
         templateUrl: 'views/picture.html',
         controller: 'PictureCtrl'
@@ -44,7 +48,7 @@ angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mg
       })
       .when('/picture/:id', {
         templateUrl: 'views/displayPicture.html',
-        controller: 'PictureEditCtrl'
+        controller: 'PictureDisplayCtrl'
       })
       .otherwise({
         redirectTo: '/'

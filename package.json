@@ -16,6 +16,7 @@
     "express-session": "^1.12.1",
     "gridfs-stream": "^1.1.1",
     "gulp": "^3.9.0",
+    "gulp-mocha": "^2.2.0",
     "gulp-nodemon": "^2.0.4",
     "jade": "~1.11.0",
     "lodash": "^3.10.1",
@@ -27,6 +28,8 @@
     "passport-local": "^1.0.0",
     "request": "^2.65.0",
     "serve-favicon": "~2.3.0",
+    "should": "^7.1.1",
+    "sinon": "^1.17.2",
     "xml2js": "^0.4.15"
   },
   "devDependencies": {
