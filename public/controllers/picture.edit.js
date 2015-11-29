@@ -1,8 +1,21 @@
 angular.module('MyApp')
   .controller('PictureEditCtrl', ['$scope', '$rootScope','ListPicture', 'Picture', '$routeParams', function ($scope, $rootScope, ListPicture,  Picture, $routeParams) {
     ListPicture.get({ _id: $routeParams.id }, function (picture) {
-      $scope.picture = picture;});
-      
+      $scope.picture = picture;
+      //$scope.workForm.medium.$modelValue = $scope.picture.medium;
+      });
+    
+    $scope.data = {
+      availableOptions: [
+        { id: '1', name: 'Work on Paper' },
+        { id: '2', name: 'Sulpture' },
+        { id: '3', name: 'Work on Canvas' },
+        { id: '4', name: 'Photograph' },
+        { id: '5', name: 'Clay' }
+      ],
+     // selectedOption: {name: $scope.picture.medium } //This sets the default value of the select in the ui
+    };
+    // $scope.workForm.medium.$modelValue = $scope.picture.medium;
       var pictureString = '';
       var fileNameS = '';
       // var nameS = this.pictureName;//$rootScope.currentUser.email;
