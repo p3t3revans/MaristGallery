@@ -1,57 +1,42 @@
 angular.module('MyApp')
-  .controller('PictureEditCtrl', ['$scope', '$rootScope','ListPicture', 'Picture', '$routeParams', function ($scope, $rootScope, ListPicture,  Picture, $routeParams) {
+  .controller('PictureEditCtrl', ['$scope', '$rootScope', 'ListPicture', 'Picture', '$routeParams', function ($scope, $rootScope, ListPicture, Picture, $routeParams) {
     ListPicture.get({ _id: $routeParams.id }, function (picture) {
       $scope.picture = picture;
-      //$scope.workForm.medium.$modelValue = $scope.picture.medium;
-      });
-    
-    $scope.data = {
-      availableOptions: [
-        { id: '1', name: 'Work on Paper' },
-        { id: '2', name: 'Sulpture' },
-        { id: '3', name: 'Work on Canvas' },
-        { id: '4', name: 'Photograph' },
-        { id: '5', name: 'Clay' }
-      ],
-     // selectedOption: {name: $scope.picture.medium } //This sets the default value of the select in the ui
-    };
-    // $scope.workForm.medium.$modelValue = $scope.picture.medium;
-      var pictureString = '';
-      var fileNameS = '';
-      // var nameS = this.pictureName;//$rootScope.currentUser.email;
-/*
-      $scope.findById = function (){
-               Picture.get({ _id: $routeParams.id }, function(picture) {
-              $scope.picture = picture;
-             }) };
-*/
-      $scope.addPicture = function (element) {
-        if (element.files && element.files[0]) {
-          var FR = new FileReader();
-          FR.onload = function (e) {
-            $('#image').attr("src", e.target.result);
-           // $('#base').text(e.target.result);
-           // pictureString = e.target.result;
-            $scope.picture.picture = e.target.result;
-            fileNameS = element.files[0].name;
-          };
-          FR.readAsDataURL(element.files[0]);
-        };
-      };//closure for addPicture
-    
-      $scope.update = function () {
-        //   var picture = new Picture();
-        console.log('at the client and about to add the picture \\\(^o^\)/');
-       // nameS = this.pictureName;
+      $scope.data = {
+        availableOptions: [
+          { name: 'Work on Paper' },
+          { name: 'Sulpture' },
+          { name: 'Work on Canvas' },
+          { name: 'Photograph' },
+          { name: 'Clay' }
+        ],
+        selectedOption: { name: $scope.picture.medium}
+      };
+    });
 
-        Picture.updatePicture({
-          _id: $scope.picture._id,
-          title: $scope.picture.title,
-          artist: $scope.picture.artist,
-          medium: $scope.picture.medium,
-          picture:  $scope.picture.picture 
-        });//call the service and pass the base64 string
-      };//closure for submitPictue
+
+ 
+    $scope.addPicture = function (element) {
+      if (element.files && element.files[0]) {
+        var FR = new FileReader();
+        FR.onload = function (e) {
+          $('#image').attr("src", e.target.result);
+          $scope.picture.picture = e.target.result;
+        };
+        FR.readAsDataURL(element.files[0]);
+      };
+    };//closure for addPicture
     
-      //closure for controller  
-    }]);
+    $scope.update = function () {
+      console.log('at the client and about to add the picture \\\(^o^\)/');
+      Picture.updatePicture({
+        _id: $scope.picture._id,
+        title: $scope.picture.title,
+        artist: $scope.picture.artist,
+        medium: $scope.data.selectedOption.name,
+        picture: $scope.picture.picture
+      });//call the service and pass the base64 string
+    };//closure for submitPictue
+    
+    //closure for controller  
+  }]);

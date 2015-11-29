@@ -3,13 +3,13 @@ angular.module('MyApp')
 
     $scope.data = {
       availableOptions: [
-        { id: '1', name: 'Work on Paper' },
-        { id: '2', name: 'Sulpture' },
-        { id: '3', name: 'Work on Canvas' },
-        { id: '4', name: 'Photograph' },
-        { id: '5', name: 'Clay' }
+        {name: 'Work on Paper' },
+        {name: 'Sulpture' },
+        {name: 'Work on Canvas' },
+        {name: 'Photograph' },
+        {name: 'Clay' }
       ],
-      selectedOption: { id: '1', name: 'Work on Paper' } //This sets the default value of the select in the ui
+      selectedOption: {name: 'Work on Paper' } //This sets the default value of the select in the ui
     };
 
     $scope.addPicture = function (element) {

@@ -10,14 +10,11 @@
               <input name="title" type="text" class="form-control" data-ng-model="picture.title" id="title" placeholder="Title" required>
               <label for="artist"> Artist : </label>
               <input name="artist" type="text" class="form-control" data-ng-model="picture.artist" id="artist" placeholder="Title" required>
-       <!--       <label for="pictureMedium"> Medium : </label>
-              <select name="pictureMedium" id="mySelect" ng-options="option.name for option in data.availableOptions track by option.id"
+              <br>
+              <label for="pictureMedium"> Medium : </label>
+              <select name="pictureMedium" id="mySelect" ng-options="option.name for option in data.availableOptions track by option.name"
               ng-model="data.selectedOption" width="200px"></select>
               <br>
-              <br> -->
-              <label for="medium"> Medium : </label>
-              <input name="medium" type="text" class="form-control" data-ng-model="picture.medium" id="medium" placeholder="Title" required>
-              <br><br>
               <div ng-show="submitted && workForm.title.$invalid" class="help-block">
                 <p ng-show="workForm.title.$error.required">Title is required</p>
               </div>

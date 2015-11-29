@@ -12,7 +12,7 @@
           <input class="form-control" type="text" name="pictureArtist" ng-model="picture.artist" width="400px" placeholder="Enter Artist" required>
           <br>
           <label for="pictureMedium"> Medium : </label>
-          <select name="pictureMedium" id="mySelect" ng-options="option.name for option in data.availableOptions track by option.id"
+          <select name="pictureMedium" id="mySelect" ng-options="option.name for option in data.availableOptions track by option.name"
           ng-model="data.selectedOption" width="200px"></select>
           <br><br>
           <input type="file" onchange="angular.element(this).scope().addPicture(this)">
