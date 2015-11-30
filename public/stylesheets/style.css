@@ -5852,7 +5852,7 @@ em {
   border-bottom: 1px solid #dae2e4; }
 
 .media-object {
-  max-width: 200px;
+  max-width: 100%;
   margin-bottom: 10px; }
 
 .episode {

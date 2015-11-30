@@ -22,14 +22,6 @@ angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mg
         templateUrl: 'views/signup.html',
         controller: 'SignupCtrl'
       })
- //      .when('/add', {
-  //      templateUrl: 'views/add.html',
-  //      controller: 'AddCtrl'
- //     })
-  //    .when('/upload', {
-   //     templateUrl: 'views/upload.html',
-  //      controller: 'MyCtrl'
-   //   })
       .when('/picture', {
         templateUrl: 'views/picture.html',
         controller: 'PictureCtrl'
