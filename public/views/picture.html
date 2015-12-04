@@ -8,9 +8,8 @@
           <select name="year" id="yearSelect" ng-options="option.year for option in year.availableOptions track by option.year" ng-model="year.selectedOption"
           width="200px" ng-change="filterByYear(year.selectedOption)"></select>
           <label for="pictureSubject"> Subject : </label>
-          <select name="pictureSubject" id="subjectSelect" 
-          ng-model="dataSubject.selectedOption" width="200px">
-          <option ng-repeat="option in dataSubject" value="{{option._id}}">{{option.teacher}} {{option.title}} {{option.yearLevel}}</option>
+          <select name="pictureSubject" id="subjectSelect" ng-options="option.title for option in dataSubject track by option._id"
+          ng-model="dataSubject.selectedOption" width="200px" ng-change="filterBySubject(dataSubject.selectedOption)">
           </select>
           <br>
           <br>
@@ -21,6 +20,11 @@
           <label for="pictureArtist"> Artist : </label>
           <input class="form-control" type="text" name="pictureArtist" ng-model="picture.artist" width="400px" placeholder="Enter Artist"
           required>
+          <br>
+          <label for="pictureArtistSelect"> Artist : </label>
+          <select name="pictureArtistSelect" id="artistSelect" ng-options="option.name for option in dataArtist track by option._id"
+          ng-model="dataArtist.selectedOption" width="200px" >
+          </select>
           <br>
           <label for="pictureMedium"> Medium : </label>
           <select name="pictureMedium" id="mySelect" ng-options="option.name for option in data.availableOptions track by option.name"

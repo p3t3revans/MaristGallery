@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('PictureCtrl', ['$scope', '$rootScope', 'Picture', 'ListSubject', 'Subject', function ($scope, $rootScope, Picture, ListSubject, Subject) {
+  .controller('PictureCtrl', ['$scope', '$rootScope', 'Picture', 'Artist', 'Subject', function ($scope, $rootScope, Picture, Artist, Subject) {
     var today = new Date();
     //var dd = today.getDate();
     //var mm = today.getMonth() + 1; //January is 0!
@@ -8,6 +8,7 @@ angular.module('MyApp')
     var promise = Subject.getSubject(yyyy);
     promise.then(function (result) {
       $scope.dataSubject = result.data;
+      
     });
 
 
@@ -61,9 +62,17 @@ angular.module('MyApp')
       var newpromise = Subject.getSubject(yyyy);
       newpromise.then(function (result) {
         $scope.dataSubject = result.data;
-        result.data = [];
+       // result.data = [];
       });
 
+    };
+
+   $scope.filterBySubject = function (selection) {
+      var enrolled = selection.year + (7 - selection.yearLevel);
+      var promiseArtist = Artist.getArtist(enrolled);
+      promiseArtist.then(function (result) {
+        $scope.dataArtist = result.data;
+      });
     };
 
 
@@ -88,7 +97,7 @@ angular.module('MyApp')
       
       Picture.addPicture({
         title: $scope.picture.title,
-        artist: $scope.picture.artist,
+        artist: $scope.dataArtist.selectedOption._id,
         picture: $scope.picture.picture,
         medium: $scope.data.selectedOption.name,
         subject: $scope.dataSubject.selectedOption._id

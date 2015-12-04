@@ -48,13 +48,13 @@ angular.module('MyApp')
           });
       },
       getArtist: function (data) {
-        return $http.get('/api/subject/', data)
+        return $http.get('/api/artist/?', {params:{"yearEnrolled": data}})
           .success(function (response) {
            //$location.path('/subject/' + subject._id);
 
             $alert({
               title: 'Congratulations!',
-              content: 'Your subject has been read.',
+              content: 'Your artist has been read.',
               placement: 'top-right',
               type: 'success',
               duration: 3
