@@ -14,6 +14,10 @@ db.once('open', function callback() {
 
 var Picture = require('./public/models/pictureModel');
 
+var Artist = require('./public/models/artistModel');
+
+var Subject = require('./public/models/subjectModel');
+
 var User = require('./public/models/userModel');
 
 var multipart = require('connect-multiparty');
@@ -104,6 +108,12 @@ app.get('/api/logout', function (req, res, next) {
 
 pictureRouter = require('./public/routes/pictureRoutes')(Picture);
 app.use('/api/picture', pictureRouter); 
+
+artistRouter = require('./public/routes/artistRouter')(Artist);
+app.use('/api/artist', artistRouter); 
+
+subjectRouter = require('./public/routes/subjectRoutes')(Subject);
+app.use('/api/subject', subjectRouter); 
 
 deletePictureRouter = require('./public/routes/deletePictureRoutes')(Picture);
 app.use('/api/picture', deletePictureRouter); 

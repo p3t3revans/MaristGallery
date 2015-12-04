@@ -1,16 +1,72 @@
 angular.module('MyApp')
-  .controller('PictureCtrl', ['$scope', '$rootScope', 'Picture', function ($scope, $rootScope, Picture) {
+  .controller('PictureCtrl', ['$scope', '$rootScope', 'Picture', 'ListSubject', 'Subject', function ($scope, $rootScope, Picture, ListSubject, Subject) {
+    var today = new Date();
+    //var dd = today.getDate();
+    //var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    //var subjectForDropDown = [];
+    var promise = Subject.getSubject(yyyy);
+    promise.then(function (result) {
+      $scope.dataSubject = result.data;
+    });
+
+
+    /*
+        var setUpSubjectData = function (listSubject) {
+          var listOfObjects = [];
+          for (var i = 0; i < listSubject.length; i++) {
+            var singleObj = {};
+            singleObj['type'] = 'title';
+            singleObj['value'] = listSubject[i].title + ' ' + listSubject[i].teacher;
+            //  singleObj['type'] = 'id';
+            //  singleObj['value'] = subject._id;
+            listOfObjects.push(singleObj);
+          };
+          return listOfObjects;
+        };
+    
+    */
 
     $scope.data = {
       availableOptions: [
-        {name: 'Work on Paper' },
-        {name: 'Sulpture' },
-        {name: 'Work on Canvas' },
-        {name: 'Photograph' },
-        {name: 'Clay' }
+        { name: 'Work on Paper' },
+        { name: 'Sulpture' },
+        { name: 'Work on Canvas' },
+        { name: 'Photograph' },
+        { name: 'Clay' }
       ],
-      selectedOption: {name: 'Work on Paper' } //This sets the default value of the select in the ui
+      selectedOption: { name: 'Work on Paper' } //This sets the default value of the select in the ui
     };
+
+    $scope.year = {
+      availableOptions: [
+        { year: 2015 },
+        { year: 2016 },
+        { year: 2017 },
+        { year: 2018 },
+        { year: 2019 },
+        { year: 2020 },
+        { year: 2021 }
+      ],
+      selectedOption: { year: 2015 } //This sets the default value of the select in the ui
+    };
+
+    $scope.filterByYear = function (year) {
+      var len = $scope.dataSubject.length;
+      for (var i = 0; i < len; i++) {
+        $scope.dataSubject[i] = [];
+      };
+      $scope.dataSubject = [];
+      yyyy = year.year;
+      var newpromise = Subject.getSubject(yyyy);
+      newpromise.then(function (result) {
+        $scope.dataSubject = result.data;
+        result.data = [];
+      });
+
+    };
+
+
 
     $scope.addPicture = function (element) {
       if (element.files && element.files[0]) {
@@ -34,7 +90,8 @@ angular.module('MyApp')
         title: $scope.picture.title,
         artist: $scope.picture.artist,
         picture: $scope.picture.picture,
-        medium: $scope.data.selectedOption.name
+        medium: $scope.data.selectedOption.name,
+        subject: $scope.dataSubject.selectedOption._id
       });//call the service and pass the base64 string
     };//closure for submitPictue
     

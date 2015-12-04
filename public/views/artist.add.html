@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading">Add Artist</div>
+		<div class="panel-body">
+			<form class="form" method="post" ng-submit="submitArtist()" name="addArtistForm">
+				<div class="form-group" ng-class="{ 'has-success' : addArtistForm.pictureTitle.$valid && addArtistForm.pictureTitle.$dirty, 'has-error' : addArtistFormForm.pictureTitle.$invalid && addArtistForm.pictureTitle.$dirty }">
+					<label for="artistName"> Name : </label>
+					<input class="form-control" type="text" name="artistName" ng-model="artist.name" width="400px" placeholder="Enter Artist name"
+					required autofocus>
+					<br>
+					<label for="artistDescription"> Description : </label>
+					<input class="form-control" type="text" name="artistDescription" ng-model="artist.description" width="800px" placeholder="Description">
+					<br>
+					<label for="yearEnrolled"> Year Enrolled : </label>
+					<input class="form-control" type="text" name="yearEnrolled" ng-model="artist.yearEnrolled" width="200px" placeholder="YYYY"
+					required>
+					<div class="help-block text-danger" ng-if="addArtistForm.pictureTitle.$dirty" ng-messages="addArtistForm.pictureTitle.$error">
+						<div ng-message="required">Picture title is required.</div>
+					</div>
+				</div>
+				<button class="btn btn-primary" type="submit" ng-disabled="addArtistForm.$invalid">Add</button>
+			</form>
+		</div>
+	</div>
+</div>

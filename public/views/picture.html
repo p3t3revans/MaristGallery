@@ -4,17 +4,29 @@
     <div class="panel-body">
       <form class="form" method="post" ng-submit="submitPicture()" name="pictureForm">
         <div class="form-group" ng-class="{ 'has-success' : pictureForm.pictureTitle.$valid && pictureForm.pictureTitle.$dirty, 'has-error' : addpictureFormForm.pictureTitle.$invalid && pictureForm.pictureTitle.$dirty }">
+          <label for="year"> Year : </label>
+          <select name="year" id="yearSelect" ng-options="option.year for option in year.availableOptions track by option.year" ng-model="year.selectedOption"
+          width="200px" ng-change="filterByYear(year.selectedOption)"></select>
+          <label for="pictureSubject"> Subject : </label>
+          <select name="pictureSubject" id="subjectSelect" 
+          ng-model="dataSubject.selectedOption" width="200px">
+          <option ng-repeat="option in dataSubject" value="{{option._id}}">{{option.teacher}} {{option.title}} {{option.yearLevel}}</option>
+          </select>
+          <br>
+          <br>
           <label for="pictureTitle"> Title : </label>
-          <input class="form-control" type="text" name="pictureTitle" ng-model="picture.title" width="400px" placeholder="Enter picture title" required
-          autofocus>
+          <input class="form-control" type="text" name="pictureTitle" ng-model="picture.title" width="400px" placeholder="Enter picture title"
+          required autofocus>
           <br>
           <label for="pictureArtist"> Artist : </label>
-          <input class="form-control" type="text" name="pictureArtist" ng-model="picture.artist" width="400px" placeholder="Enter Artist" required>
+          <input class="form-control" type="text" name="pictureArtist" ng-model="picture.artist" width="400px" placeholder="Enter Artist"
+          required>
           <br>
           <label for="pictureMedium"> Medium : </label>
           <select name="pictureMedium" id="mySelect" ng-options="option.name for option in data.availableOptions track by option.name"
           ng-model="data.selectedOption" width="200px"></select>
-          <br><br>
+          <br>
+          <br>
           <input type="file" onchange="angular.element(this).scope().addPicture(this)">
           <!--<div id="base"></div>-->
           <div id="myDiv">

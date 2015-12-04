@@ -17,15 +17,17 @@
   <div ng-controller="NavbarCtrl" class="navbar navbar-default navbar-static-top" role="navigation" bs-navbar>
     <div class="navbar-header">
       <a class="navbar-brand" href="/">
-        <span class="glyphicon glyphicon-pencil"></span> Marist 
+        <span class="glyphicon glyphicon-pencil"></span> Marist
         <strong>Online Art Gallery</strong></a>
     </div>
     <ul class="nav navbar-nav">
       <li data-match-route="/$"><a href="/">Home</a></li>
-<!--      <li data-match-route="/add"><a href="/add">Add</a></li>  -->
+      <!--      <li data-match-route="/add"><a href="/add">Add</a></li>  -->
       <li data-match-route="/picture"><a href="/picture">Add Picture</a></li>
       <li data-match-route="/listpicture"><a href="/listpicture">List Pictures</a></li>
-  <!--    <li data-match-route="/upload"><a href="/upload">Upload</a></li> -->
+      <li data-match-route="/addartist"><a href="/addartist">Add Artist</a></li>
+      <li data-match-route="/addsubject"><a href="/addsubject">Add Subject</a></li>
+      <!--    <li data-match-route="/upload"><a href="/upload">Upload</a></li> -->
     </ul>
     <ul class="nav navbar-nav pull-right" ng-if="!currentUser">
       <li data-match-route="/login"><a href="/login">Login</a></li>
@@ -51,6 +53,8 @@
   <script src="vendor/promise.js"></script>
   <script src="vendor/ng-file-upload.js"></script>
   <script src="app.js"></script>
+  <script src="controllers/artist.js"></script>
+  <script src="controllers/subject.js"></script>
   <script src="controllers/displayPicture.js"></script>
   <script src="controllers/listPictures.js"></script>
   <script src="controllers/signup.js"></script>
@@ -60,6 +64,9 @@
   <script src="controllers/picture.edit.js"></script>
   <script src="controllers/displayPicture.js"></script>
   <script src="services/auth.js"></script>
+  <script src="services/subject.js"></script>
+  <script src="services/readsubject.js"></script>
+  <script src="services/artist.js"></script>
   <script src="services/picture.js"></script>
   <script src="services/readpictures.js"></script>
   <script src="services/deletepicture.js"></script>

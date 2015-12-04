@@ -6,14 +6,14 @@ angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mg
         templateUrl: 'views/listpictures.html',
         controller: 'ListPictureCtrl'
       })
-  //    .when('/', {
-  //      templateUrl: 'views/home.html',
-  //      controller: 'MainCtrl'
-   //   })
-  //    .when('/shows/:id', {
-  //      templateUrl: 'views/detail.html',
- //       controller: 'DetailCtrl'
-  //    })
+      .when('/addsubject', {
+        templateUrl: 'views/subject.add.html',
+        controller: 'SubjectCtrl'
+      })
+      .when('/addartist', {
+        templateUrl: 'views/artist.add.html',
+        controller: 'ArtistCtrl'
+      })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'

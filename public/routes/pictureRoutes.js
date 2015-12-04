@@ -5,6 +5,7 @@ var routes = function (Picture) {
 
 	pictureRouter.route('/')
 		.post(function (req, res, next) {
+			console.log(' \\\(^o^\)/ at the post picture api');
 			var picture = new Picture({
 				title: req.body.title,
 				artist: req.body.artist,
@@ -18,8 +19,8 @@ var routes = function (Picture) {
 		});
 	pictureRouter.route('/').get(function (req, res, next) {
 		var query = Picture.find();
-		if (req.query.genre) {
-			query.where({ artist: req.query.artist });
+		if (req.query.medium) {
+			query.where({ medium: req.query.medium });
 		} else if (req.query.medium) {
 			query.where({ medium: new RegExp('^' + '[' + req.query.medium + ']', 'i') });
 		} else {
@@ -61,6 +62,7 @@ var routes = function (Picture) {
 				picture.artist = req.body.artist;
 				picture.title = req.body.title;
 				picture.medium = req.body.medium;
+				picture.subject = req.body.subject;
 				picture.save(function (err) {
 					if (err) return next(err);
 					res.send(picture);
