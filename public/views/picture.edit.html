@@ -8,12 +8,21 @@
             <div class="col-md-10">
               <label for="title"> Title : </label>
               <input name="title" type="text" class="form-control" data-ng-model="picture.title" id="title" placeholder="Title" required>
-              <label for="artist"> Artist : </label>
-              <input name="artist" type="text" class="form-control" data-ng-model="picture.artist" id="artist" placeholder="Title" required>
+              <label for="pictureArtistSelect"> Artist : </label>
+              <select name="pictureArtistSelect" id="artistSelect" ng-options="option.name for option in dataArtist track by option._id"
+              ng-model="dataArtist.selectedOption" width="200px" required>
+              </select>
+              <br>
               <br>
               <label for="pictureMedium"> Medium : </label>
               <select name="pictureMedium" id="mySelect" ng-options="option.name for option in data.availableOptions track by option.name"
               ng-model="data.selectedOption" width="200px"></select>
+              <br>
+              <label for="pictureSubject"> Subject : </label>
+              <select name="pictureSubject" id="subjectSelect" ng-options="option.title for option in dataSubject track by option._id"
+              ng-model="dataSubject.selectedOption" width="200px" ng-change="filterBySubject(dataSubject.selectedOption)"
+              required>
+              </select>
               <br>
               <div ng-show="submitted && workForm.title.$invalid" class="help-block">
                 <p ng-show="workForm.title.$error.required">Title is required</p>

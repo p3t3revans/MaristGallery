@@ -1,19 +1,5 @@
 angular.module('MyApp')
-  .controller('PictureEditCtrl', ['$scope', '$rootScope', 'ListPicture', 'Picture', '$routeParams', function ($scope, $rootScope, ListPicture, Picture, $routeParams) {
-    /*   ListPicture.get({ _id: $routeParams.id }, function (picture) {
-         $scope.picture = picture;
-         $scope.data = {
-           availableOptions: [
-             { name: 'Work on Paper' },
-             { name: 'Sulpture' },
-             { name: 'Work on Canvas' },
-             { name: 'Photograph' },
-             { name: 'Clay' }
-           ],
-           selectedOption: { name: $scope.picture.medium}
-         };
-       });
-   */
+  .controller('PictureEditCtrl', ['$scope', '$rootScope', 'Subject', 'Picture', '$routeParams', 'Artist', function ($scope, $rootScope, Subject, Picture, $routeParams, Artist) {
     var promise = Picture.readPicture($routeParams.id);
     promise.then(function (result) {
       $scope.picture = result.data[0];
@@ -27,8 +13,29 @@ angular.module('MyApp')
         ],
         selectedOption: { name: $scope.picture.medium }
       };
-    });
+      var newpromise = Subject.getSubject($scope.picture.year);
+      newpromise.then(function (result) {
+        $scope.dataSubject = result.data;
+        for (var i = 0; i < $scope.dataSubject.length; i++) {
+          if ($scope.dataSubject[i]._id == $scope.picture.subject) {
+            $scope.dataSubject.selectedOption = $scope.dataSubject[i];
+            break;
+          }
+        }
+        var enrolled = $scope.picture.year + (7 - $scope.dataSubject.selectedOption.yearLevel);
+        var promiseArtist = Artist.getArtist(enrolled);
+        promiseArtist.then(function (result) {
+          $scope.dataArtist = result.data;
+          for (var i = 0; i < $scope.dataArtist.length; i++) {
+            if ($scope.dataArtist[i]._id == $scope.picture.artist) {
+              $scope.dataArtist.selectedOption = $scope.dataArtist[i];
+              break;
+            }
+          }
+        });
+      });
 
+    });
 
     $scope.addPicture = function (element) {
       if (element.files && element.files[0]) {

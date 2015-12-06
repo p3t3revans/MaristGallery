@@ -8,6 +8,8 @@ var routes = function (Picture) {
 			console.log(' \\\(^o^\)/ at the post picture api');
 			var picture = new Picture({
 				title: req.body.title,
+				subject : req.body.subject,
+				year: req.body.year,
 				artist: req.body.artist,
 				artistName: req.body.artistName,
 				picture: req.body.picture,
@@ -76,6 +78,7 @@ var routes = function (Picture) {
 			if (err) return next(err);
 			else {
 				picture.picture = req.body.picture;
+				picture.year = req.body.year;
 				picture.artist = req.body.artist;
 				picture.artistName = req.body.artistName,
 				picture.title = req.body.title;
