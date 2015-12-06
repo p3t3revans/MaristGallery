@@ -1,7 +1,22 @@
 angular.module('MyApp')
   .controller('PictureEditCtrl', ['$scope', '$rootScope', 'ListPicture', 'Picture', '$routeParams', function ($scope, $rootScope, ListPicture, Picture, $routeParams) {
-    ListPicture.get({ _id: $routeParams.id }, function (picture) {
-      $scope.picture = picture;
+    /*   ListPicture.get({ _id: $routeParams.id }, function (picture) {
+         $scope.picture = picture;
+         $scope.data = {
+           availableOptions: [
+             { name: 'Work on Paper' },
+             { name: 'Sulpture' },
+             { name: 'Work on Canvas' },
+             { name: 'Photograph' },
+             { name: 'Clay' }
+           ],
+           selectedOption: { name: $scope.picture.medium}
+         };
+       });
+   */
+    var promise = Picture.readPicture($routeParams.id);
+    promise.then(function (result) {
+      $scope.picture = result.data[0];
       $scope.data = {
         availableOptions: [
           { name: 'Work on Paper' },
@@ -10,12 +25,11 @@ angular.module('MyApp')
           { name: 'Photograph' },
           { name: 'Clay' }
         ],
-        selectedOption: { name: $scope.picture.medium}
+        selectedOption: { name: $scope.picture.medium }
       };
     });
 
 
- 
     $scope.addPicture = function (element) {
       if (element.files && element.files[0]) {
         var FR = new FileReader();

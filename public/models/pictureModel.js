@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
 
 var pictureModel = new Schema({
     title: { type: String },
+    artistName : String,
     artist: { type: mongoose.Schema.Types.ObjectId, ref: 'Artist' },
     medium: { type: String, default: "Work on Paper" },
     picture: { type: String },

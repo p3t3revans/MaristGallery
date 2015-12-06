@@ -124,6 +124,12 @@ app.use(function (req, res, next) {
   }
   next();
 });
+//the following bit of code gets around the problem of 
+//the page showing a could not get display
+//it re routes to the page you where on after a restart
+app.get('*', function(req, res) {
+  res.redirect('/#' + req.originalUrl);
+});
 
 app.use(function (err, req, res, next) {
   console.error(err.stack);

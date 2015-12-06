@@ -98,6 +98,7 @@ angular.module('MyApp')
       Picture.addPicture({
         title: $scope.picture.title,
         artist: $scope.dataArtist.selectedOption._id,
+        artistName: $scope.dataArtist.selectedOption.name,
         picture: $scope.picture.picture,
         medium: $scope.data.selectedOption.name,
         subject: $scope.dataSubject.selectedOption._id

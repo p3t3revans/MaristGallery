@@ -23,10 +23,11 @@ var routes = function (Subject, Artist) {
 			console.log(" hello ");
 			var query = Subject.find();
 			if (req.query.year) {
-						query.where({ year: Number(req.query.year)  });
-					} else {
-						query.limit(12);
-					}
+				console.log(" year ");
+				query.where({ year: Number(req.query.year) });
+			} else {
+				query.limit(12);
+			}
 			query.exec(function (err, subjects) {
 				if (err) return next(err);
 				res.send(subjects);
@@ -38,10 +39,10 @@ var routes = function (Subject, Artist) {
 			console.log(" hello " + req.params.year);
 			var query = Subject.find();
 			if (req.params.year) {
-						query.where({ year: Number(req.params.year)  });
-					} else {
-						query.limit(12);
-					}
+				query.where({ year: Number(req.params.year) });
+			} else {
+				query.limit(12);
+			}
 			query.exec(function (err, subjects) {
 				if (err) return next(err);
 				res.send(subjects);

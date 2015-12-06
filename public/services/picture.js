@@ -46,8 +46,31 @@ angular.module('MyApp')
               duration: 3
             });
           });
-      }
+      },
+      readPicture: function (picture) {
+        console.log(' \\\(^o^\)/ at the service get picture ' + picture);
+        return $http.get('/api/picture/?', { params:{id: picture } })
+          .success(function () {
+            //$location.path('/picture/' + picture);
 
+            $alert({
+              title: 'Yippy!',
+              content: 'Your picture has been read.',
+              placement: 'top-right',
+              type: 'success',
+              duration: 3
+            });
+          })
+          .error(function (response) {
+            $alert({
+              title: 'Error!',
+              content: response.data,
+              placement: 'top-right',
+              type: 'danger',
+              duration: 3
+            });
+          });
+      }
     };
   }]);
   
