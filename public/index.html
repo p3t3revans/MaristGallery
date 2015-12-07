@@ -10,7 +10,10 @@
   <link rel="icon" type="image/png" href="favicon.png" />
   <link href="stylesheets/style.css" rel="stylesheet">
   <link href="stylesheets/works.css" rel="stylesheet">
-  <link href="stylesheets/bootstrap/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <!-- <link href="stylesheets/bootstrap/bootstrap.css" rel="stylesheet">-->
 </head>
 
 <body>
@@ -23,12 +26,30 @@
     <ul class="nav navbar-nav">
       <li data-match-route="/$"><a href="/">Home</a></li>
       <!--      <li data-match-route="/add"><a href="/add">Add</a></li>  -->
-
-      <li data-match-route="/picture"><a href="/picture">Add Picture</a></li>
-        <li data-match-route="/listpicture"><a href="/listpicture">List Pictures</a></li>
-        <li data-match-route="/addartist"><a href="/addartist">Add Artist</a></li>
-        <li data-match-route="/addsubject"><a href="/addsubject">Add Subject</a></li>
-        <li data-match-route="/listsubject"><a href="/listsubject">List Subject</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pictures
+          <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li data-match-route="/picture"><a href="/picture">Add Picture</a></li>
+          <li data-match-route="/listpicture"><a href="/listpicture">List Pictures</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Artists
+          <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li data-match-route="/addartist"><a href="/addartist">Add Artist</a></li>
+        </ul>
+      </li>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Subjects
+          <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li data-match-route="/addsubject"><a href="/addsubject">Add Subject</a></li>
+          <li data-match-route="/listsubject"><a href="/listsubject">List Subject</a></li>
+        </ul>
+      </li>
       <!--    <li data-match-route="/upload"><a href="/upload">Upload</a></li> -->
     </ul>
     <ul class="nav navbar-nav pull-right" ng-if="!currentUser">
