@@ -69,6 +69,9 @@ angular.module('MyApp')
               duration: 3
             });
           });
+      },
+      deletePicture: function (subject) {
+        return $http.delete('/api/subject/'+ subject._id);
       }
 
     };

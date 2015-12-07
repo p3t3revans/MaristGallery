@@ -10,6 +10,10 @@ angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mg
         templateUrl: 'views/subject.add.html',
         controller: 'SubjectCtrl'
       })
+      .when('/listsubject', {
+        templateUrl: 'views/subject.list.html',
+        controller: 'ListSubjectCtrl'
+      })
       .when('/addartist', {
         templateUrl: 'views/artist.add.html',
         controller: 'ArtistCtrl'
