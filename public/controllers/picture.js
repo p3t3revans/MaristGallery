@@ -11,23 +11,6 @@ angular.module('MyApp')
       
     });
 
-
-    /*
-        var setUpSubjectData = function (listSubject) {
-          var listOfObjects = [];
-          for (var i = 0; i < listSubject.length; i++) {
-            var singleObj = {};
-            singleObj['type'] = 'title';
-            singleObj['value'] = listSubject[i].title + ' ' + listSubject[i].teacher;
-            //  singleObj['type'] = 'id';
-            //  singleObj['value'] = subject._id;
-            listOfObjects.push(singleObj);
-          };
-          return listOfObjects;
-        };
-    
-    */
-
     $scope.data = {
       availableOptions: [
         { name: 'Work on Paper' },

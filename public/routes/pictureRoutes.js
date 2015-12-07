@@ -5,7 +5,7 @@ var routes = function (Picture) {
 
 	pictureRouter.route('/')
 		.post(function (req, res, next) {
-			console.log(' \\\(^o^\)/ at the post picture api');
+		//	console.log(' \\\(^o^\)/ at the post picture api');
 			var picture = new Picture({
 				title: req.body.title,
 				subject : req.body.subject,
@@ -21,7 +21,7 @@ var routes = function (Picture) {
 			});
 		});
 	pictureRouter.route('/').get(function (req, res, next) {
-				console.log(' \\\(^o^\)/ at the get picture api' + ' query id ' + req.query.id  + ' params id ' + req.params.id + ' query _id ' + req.query._id);
+		//		console.log(' \\\(^o^\)/ at the get picture api' + ' query id ' + req.query.id  + ' params id ' + req.params.id + ' query _id ' + req.query._id);
 
 		var query = Picture.find();
 		if (req.query.medium) {
@@ -42,7 +42,7 @@ var routes = function (Picture) {
 	});
 
 	pictureRouter.route('/:id').get(function (req, res, next) {
-		console.log(' \\\(^o^\)/ at the get :id picture api' + req.params.id);
+		//console.log(' \\\(^o^\)/ at the get :id picture api' + req.params.id);
 		Picture.findById(req.params.id, function (err, picture) {
 
 			if (err) return next(err);
@@ -51,7 +51,7 @@ var routes = function (Picture) {
 	});
 	
 	pictureRouter.route('/?').get(function (req, res, next) {
-		console.log(' \\\(^o^\)/ at the get ? picture api' + req.params.id);
+		//console.log(' \\\(^o^\)/ at the get ? picture api' + req.params.id);
 
 		Picture.findById(req.params.id, function (err, picture) {
 

@@ -37,6 +37,14 @@ angular.module('MyApp')
 
     });
 
+    $scope.filterBySubject = function (selection) {
+      var enrolled = selection.year + (7 - selection.yearLevel);
+      var promiseArtist = Artist.getArtist(enrolled);
+      promiseArtist.then(function (result) {
+        $scope.dataArtist = result.data;
+      });
+    };
+
     $scope.addPicture = function (element) {
       if (element.files && element.files[0]) {
         var FR = new FileReader();
@@ -52,9 +60,12 @@ angular.module('MyApp')
       console.log('at the client and about to add the picture \\\(^o^\)/');
       Picture.updatePicture({
         _id: $scope.picture._id,
+        year: $scope.picture.year,
         title: $scope.picture.title,
-        artist: $scope.picture.artist,
+        artist: $scope.dataArtist.selectedOption._id,
+        artistName: $scope.dataArtist.selectedOption.name,
         medium: $scope.data.selectedOption.name,
+        subject: $scope.dataSubject.selectedOption._id,
         picture: $scope.picture.picture
       });//call the service and pass the base64 string
     };//closure for submitPictue

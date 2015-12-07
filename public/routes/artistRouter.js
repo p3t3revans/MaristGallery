@@ -81,44 +81,7 @@ var routes = function (Artist, Picture) {
 
 			});
 		});
-	/*
-		artistRouter.route('/:id/picture/:idPic')
-			.put(function (req, res, next) {
-				Artist.findById(req.params.id, function (err, artist) {
-					if (err) return next(err);
-					else {
-						artist.name = req.body.name;
-						artist.description = req.body.description;
-						artist.yearEnrolled = req.body.yearEnrolled;
-						artist.pictures.push({ _id: req.params.idPic });
-						artist.save(function (err) {
-							if (err) return next(err);
-							res.send(artist);
-						});
-					};
 	
-				});
-			});
-	
-		artistRouter.route('/:id/subject/:idSub')
-			.put(function (req, res, next) {
-				Artist.findById(req.params.id, function (err, artist) {
-					if (err) return next(err);
-					else {
-						artist.name = req.body.name;
-						artist.description = req.body.description;
-						artist.yearEnrolled = req.body.yearEnrolled;
-						artist.subjects.push({ _id: req.params.idSub });
-						artist.save(function (err) {
-							if (err) return next(err);
-							res.send(artist);
-						});
-					};
-	
-				});
-			});
-	*/
-
 	return artistRouter;
 };
 module.exports = routes;
