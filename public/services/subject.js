@@ -6,18 +6,18 @@ angular.module('MyApp')
           .success(function () {
             $location.path('/subject');
 
-            $alert({
+         /*   $alert({
               title: 'Congratulations!',
               content: 'Your subject has been saved.',
               placement: 'top-right',
               type: 'success',
               duration: 3
-            });
+            });*/
           })
           .error(function (response) {
             $alert({
               title: 'Error!',
-              content: response.data,
+              content: 'failed to add subject',
               placement: 'top-right',
               type: 'danger',
               duration: 3
@@ -29,18 +29,18 @@ angular.module('MyApp')
           .success(function () {
             $location.path('/subject/' + subject._id);
 
-            $alert({
+         /*   $alert({
               title: 'Congratulations!',
               content: 'Your subject has been updated.',
               placement: 'top-right',
               type: 'success',
               duration: 3
-            });
+            });*/
           })
           .error(function (response) {
             $alert({
               title: 'Error!',
-              content: response.data,
+              content: 'failed to update subject',
               placement: 'top-right',
               type: 'danger',
               duration: 3
@@ -52,18 +52,18 @@ angular.module('MyApp')
           .success(function (response) {
            //$location.path('/subject/' + subject._id);
 
-            $alert({
+      /*      $alert({
               title: 'Congratulations!',
               content: 'Your subject has been read.',
               placement: 'top-right',
               type: 'success',
               duration: 3
-            });
+            });*/
           })
           .error(function (response) {
             $alert({
               title: 'Error!',
-              content: response.data,
+              content: 'failed to read subject',
               placement: 'top-right',
               type: 'danger',
               duration: 3

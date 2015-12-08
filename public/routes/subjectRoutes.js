@@ -23,7 +23,7 @@ var routes = function (Subject, Artist) {
 			console.log(" hello ");
 			var query = Subject.find();
 			if (req.query.year) {
-				console.log(" year ");
+				console.log(" year query " + req.query.year);
 				query.where({ year: Number(req.query.year) });
 			} else {
 				query.limit(12);
@@ -33,10 +33,10 @@ var routes = function (Subject, Artist) {
 				res.send(subjects);
 			});
 		});
-
+    // should probably delete this
 	subjectRouter.route('/?')
 		.get(function (req, res, next) {
-			console.log(" hello " + req.params.year);
+		   console.log('don\'t delete the route ? subjectRouter');
 			var query = Subject.find();
 			if (req.params.year) {
 				query.where({ year: Number(req.params.year) });

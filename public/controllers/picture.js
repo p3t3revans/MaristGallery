@@ -32,7 +32,7 @@ angular.module('MyApp')
         { year: 2020 },
         { year: 2021 }
       ],
-      selectedOption: { year: 2015 } //This sets the default value of the select in the ui
+      selectedOption: { year: yyyy } //This sets the default value of the select in the ui
     };
 
     $scope.filterByYear = function (year) {
@@ -75,10 +75,10 @@ angular.module('MyApp')
     
     $scope.submitPicture = function () {
       //   var picture = new Picture();
-      console.log('at the client and about to add the picture \\\(^o^\)/');
+      //console.log('at the client and about to add the picture \\\(^o^\)/');
       //nameS = this.pictureName;
       
-      Picture.addPicture({
+      var promiseAdd = Picture.addPicture({
         title: $scope.picture.title,
         year: $scope.year.selectedOption.year,
         artist: $scope.dataArtist.selectedOption._id,
@@ -87,6 +87,9 @@ angular.module('MyApp')
         medium: $scope.data.selectedOption.name,
         subject: $scope.dataSubject.selectedOption._id
       });//call the service and pass the base64 string
+      promiseAdd.then(function (result){
+       // alert("picture added");
+      });
     };//closure for submitPictue
     
     //closure for controller  

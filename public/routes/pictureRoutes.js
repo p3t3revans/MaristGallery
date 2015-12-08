@@ -21,8 +21,6 @@ var routes = function (Picture) {
 			});
 		});
 	pictureRouter.route('/').get(function (req, res, next) {
-		//		console.log(' \\\(^o^\)/ at the get picture api' + ' query id ' + req.query.id  + ' params id ' + req.params.id + ' query _id ' + req.query._id);
-
 		var query = Picture.find();
 		if (req.query.medium) {
 			query.where({ medium: req.query.medium });
@@ -42,26 +40,20 @@ var routes = function (Picture) {
 	});
 
 	pictureRouter.route('/:id').get(function (req, res, next) {
-		//console.log(' \\\(^o^\)/ at the get :id picture api' + req.params.id);
 		Picture.findById(req.params.id, function (err, picture) {
-
 			if (err) return next(err);
 			res.send(picture);
 		});
 	});
-	
+	//this is probably not used
 	pictureRouter.route('/?').get(function (req, res, next) {
-		//console.log(' \\\(^o^\)/ at the get ? picture api' + req.params.id);
-
+		console.log(' \\\(^o^\)/ at the get question mark so don\'t delete it');
 		Picture.findById(req.params.id, function (err, picture) {
-
 			if (err) return next(err);
 			res.send(picture);
 		});
 	});
 	pictureRouter.route('/:id').delete(function (req, res, next) {
-
-		//	console.log(' \\\(^o^\)/ at the remove api');
 		Picture.findById(req.params.id, function (err, picture) {
 			if (err) return next(err);
 			picture.remove(function (err) {

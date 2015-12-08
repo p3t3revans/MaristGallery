@@ -3,6 +3,7 @@ angular.module('MyApp')
     var promise = Picture.readPicture($routeParams.id);
     promise.then(function (result) {
       $scope.picture = result.data[0];
+      // need to provide a medium type as a mongo type
       $scope.data = {
         availableOptions: [
           { name: 'Work on Paper' },
@@ -57,8 +58,8 @@ angular.module('MyApp')
     };//closure for addPicture
     
     $scope.update = function () {
-      console.log('at the client and about to add the picture \\\(^o^\)/');
-      Picture.updatePicture({
+     // console.log('at the client and about to add the picture \\\(^o^\)/');
+     var promisePicture = Picture.updatePicture({
         _id: $scope.picture._id,
         year: $scope.picture.year,
         title: $scope.picture.title,
@@ -68,6 +69,9 @@ angular.module('MyApp')
         subject: $scope.dataSubject.selectedOption._id,
         picture: $scope.picture.picture
       });//call the service and pass the base64 string
+      promisePicture.then(function (result){
+        
+      });
     };//closure for submitPictue
     
     //closure for controller  

@@ -4,13 +4,14 @@ angular.module('MyApp')
 
     $scope.submitArtist = function () {
       //   var picture = new Picture();
-      console.log('at the client and about to add the picture \\\(^o^\)/');
+  //    console.log('at the client and about to add the picture \\\(^o^\)/');
       //nameS = this.pictureName;
       
       Artist.addArtist({
         name: $scope.artist.name,
         description : $scope.artist.description,
-        yearEnrolled :$scope.artist.yearEnrolled
+        yearEnrolled :$scope.artist.yearEnrolled,
+        active : true
       });//call the service and pass the base64 string
     };//closure for submitPictue
     

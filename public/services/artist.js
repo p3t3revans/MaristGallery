@@ -6,18 +6,18 @@ angular.module('MyApp')
           .success(function () {
             $location.path('/artist');
 
-            $alert({
-              title: 'Congratulations!',
-              content: 'Your artist has been saved.',
-              placement: 'top-right',
-              type: 'success',
-              duration: 3
-            });
+            /*     $alert({
+                   title: 'Congratulations!',
+                   content: 'Your artist has been saved.',
+                   placement: 'top-right',
+                   type: 'success',
+                   duration: 3
+                 });*/
           })
           .error(function (response) {
             $alert({
               title: 'Error!',
-              content: response.data,
+              content: 'failed to add artist',
               placement: 'top-right',
               type: 'danger',
               duration: 3
@@ -29,18 +29,18 @@ angular.module('MyApp')
           .success(function () {
             $location.path('/artist/' + artist._id);
 
-            $alert({
-              title: 'Congratulations!',
-              content: 'Your artist has been updated.',
-              placement: 'top-right',
-              type: 'success',
-              duration: 3
-            });
+            /*        $alert({
+                      title: 'Congratulations!',
+                      content: 'Your artist has been updated.',
+                      placement: 'top-right',
+                      type: 'success',
+                      duration: 3
+                    });*/
           })
           .error(function (response) {
             $alert({
               title: 'Error!',
-              content: response.data,
+              content: 'artist failed to update',
               placement: 'top-right',
               type: 'danger',
               duration: 3
@@ -48,22 +48,45 @@ angular.module('MyApp')
           });
       },
       getArtist: function (data) {
-        return $http.get('/api/artist/?', {params:{"yearEnrolled": data}})
+        return $http.get('/api/artist/?', { params: { "yearEnrolled": data } })
           .success(function (response) {
-           //$location.path('/subject/' + subject._id);
-
-            $alert({
-              title: 'Congratulations!',
-              content: 'Your artist has been read.',
-              placement: 'top-right',
-              type: 'success',
-              duration: 3
-            });
+            //$location.path('/subject/' + subject._id);
+            /*
+                        $alert({
+                          title: 'Congratulations!',
+                          content: 'Your artist has been read.',
+                          placement: 'top-right',
+                          type: 'success',
+                          duration: 3
+                        });*/
           })
           .error(function (response) {
             $alert({
               title: 'Error!',
-              content: response.data,
+              content: 'artist failed to read',
+              placement: 'top-right',
+              type: 'danger',
+              duration: 3
+            });
+          });
+      },
+      getActiveArtist: function (data) {
+        return $http.get('/api/artist/?', { params: { "yearEnrolled": data ,"active" : true }})
+          .success(function (response) {
+            //$location.path('/subject/' + subject._id);
+            /*
+                        $alert({
+                          title: 'Congratulations!',
+                          content: 'Your artist has been read.',
+                          placement: 'top-right',
+                          type: 'success',
+                          duration: 3
+                        });*/
+          })
+          .error(function (response) {
+            $alert({
+              title: 'Error!',
+              content: 'artist failed to read',
               placement: 'top-right',
               type: 'danger',
               duration: 3

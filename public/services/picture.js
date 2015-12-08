@@ -6,18 +6,18 @@ angular.module('MyApp')
           .success(function () {
             $location.path('/picture');
 
-            $alert({
+        /*    $alert({
               title: 'Congratulations!',
               content: 'Your picture has been saved.',
               placement: 'top-right',
               type: 'success',
               duration: 3
-            });
+            });*/
           })
           .error(function (response) {
             $alert({
               title: 'Error!',
-              content: response.data,
+              content: 'failde to add picture',
               placement: 'top-right',
               type: 'danger',
               duration: 3
@@ -29,18 +29,18 @@ angular.module('MyApp')
           .success(function () {
             $location.path('/picture/' + picture._id);
 
-            $alert({
+         /*   $alert({
               title: 'Congratulations!',
               content: 'Your picture has been updated.',
               placement: 'top-right',
               type: 'success',
               duration: 3
-            });
+            });*/
           })
           .error(function (response) {
             $alert({
               title: 'Error!',
-              content: response.data,
+              content: 'failed to update picture',
               placement: 'top-right',
               type: 'danger',
               duration: 3
@@ -48,23 +48,23 @@ angular.module('MyApp')
           });
       },
       readPicture: function (picture) {
-        console.log(' \\\(^o^\)/ at the service get picture ' + picture);
+      //  console.log(' \\\(^o^\)/ at the service get picture ' + picture);
         return $http.get('/api/picture/?', { params:{id: picture } })
           .success(function () {
             //$location.path('/picture/' + picture);
 
-            $alert({
+        /*    $alert({
               title: 'Yippy!',
               content: 'Your picture has been read.',
               placement: 'top-right',
               type: 'success',
               duration: 3
-            });
+            });*/
           })
           .error(function (response) {
             $alert({
               title: 'Error!',
-              content: response.data,
+              content: 'failed to read picture',
               placement: 'top-right',
               type: 'danger',
               duration: 3

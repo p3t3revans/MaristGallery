@@ -18,9 +18,13 @@ var routes = function (Artist, Picture) {
 	artistRouter.route('/')
 		.get(function (req, res, next) {
 			var query = Artist.find();
-			if (req.query.yearEnrolled) {
+			if (req.query.yearEnrolled & req.query.active) {
+				query.and([{ yearEnrolled: Number(req.query.yearEnrolled) }, { active: true }]);
+			} 
+			else if (req.query.yearEnrolled){
 				query.where({ yearEnrolled: Number(req.query.yearEnrolled) });
-			} else {
+			}
+			else {
 				query.limit(12);
 			}
 			query.exec(function (err, artists) {
@@ -28,12 +32,13 @@ var routes = function (Artist, Picture) {
 				res.send(artists);
 			});
 		});
-
+	// does this one get called? I think not so should delete this for tidiness sake
 	artistRouter.route('/?')
 		.get(function (req, res, next) {
+			console.log(' \\\(^o^\)/ at the get question mark api so better not delete it');
 			var query = Artist.find();
 			if (req.query.yearEnrolled) {
-				query.where({ yearEnrolled: Number(req.query.yearEnrolled) });
+				query.and([{ yearEnrolled: Number(req.query.yearEnrolled) }, { active: true }]);
 			} else {
 				query.limit(12);
 			}
@@ -46,7 +51,6 @@ var routes = function (Artist, Picture) {
 	artistRouter.route('/:id')
 		.get(function (req, res, next) {
 			Artist.findById(req.params.id, function (err, artist) {
-
 				if (err) return next(err);
 				res.send(artist);
 			});
@@ -61,8 +65,6 @@ var routes = function (Artist, Picture) {
 					res.send(200);
 				});
 			});
-
-
 		});
 
 	artistRouter.route('/:id')
@@ -78,10 +80,8 @@ var routes = function (Artist, Picture) {
 						res.send(artist);
 					});
 				};
-
 			});
 		});
-	
 	return artistRouter;
 };
 module.exports = routes;

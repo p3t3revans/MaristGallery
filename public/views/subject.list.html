@@ -3,36 +3,31 @@
 		<div class="panel-heading">List Subject</div>
 		<div class="panel-body">
 			<form class="form" method="post" ng-submit="submitSubject()" name="listSubjectForm">
-				<div class="row">
-					<div class="col-md-2">
-						<!--Sidebar content-->
+				<label for="year"> Year Enrolled : </label>
+				<select name="year" id="yearSelect" ng-options="option.year for option in year.availableOptions track by option.year" ng-model="year.selectedOption"
+				width="200px" ng-change="filterByYear(year.selectedOption)" required></select>
+				<label for="year">  Search: </label>
+				<input ng-model="query"> Sort by:
+				<select ng-model="orderProp">
+					<option value="title">Alphabetical</option>
+					<option value="teacher">Teacher</option>
+				</select>
+				<br> 
+			<ul class="subjects">
+				<li ng-repeat="subject in subjects | filter:query | orderBy:orderProp" class="subject subject-listing">
+					<a href="#/subject/{{subject._id}}">{{subject.title}} {{subject.teacher}}</a>
+					<a class="btn" href="/subject/{{subject._id}}/edit">
+						<i class="glyphicon glyphicon-edit"></i>
+					</a>
+					<a class="btn" data-ng-click="remove(subject);">
+						<i class="glyphicon glyphicon-trash"></i>
+					</a>
+				</li>
+			</ul>
 
-						Search:
-						<input ng-model="query"> Sort by:
-						<select ng-model="orderProp">
-							<option value="title">Alphabetical</option>
-							<option value="teacher">Teacher</option>
-						</select>
-
-					</div>
-					<div class="col-md-10">
-						<!--Body content-->
-
-						<ul class="subjects">
-							<li ng-repeat="subject in subjects | filter:query | orderBy:orderProp" class="subject subject-listing">
-								<a href="#/subject/{{subject._id}}">{{subject.title}} {{subject.teacher}}</a>
-								<a class="btn" href="/subject/{{subject._id}}/edit">
-									<i class="glyphicon glyphicon-edit"></i>
-								</a>
-								<a class="btn" data-ng-click="remove(subject);">
-									<i class="glyphicon glyphicon-trash"></i>
-								</a>
-							</li>
-						</ul>
-
-					</div>
-				</div>
-			</form>
 		</div>
 	</div>
+	</form>
+</div>
+</div>
 </div>

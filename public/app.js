@@ -3,7 +3,7 @@ angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mg
     $locationProvider.html5Mode(true);
     $routeProvider
       .when('/', {
-        templateUrl: 'views/listpictures.html',
+        templateUrl: 'views/picture.list.html',
         controller: 'ListPictureCtrl'
       })
       .when('/addsubject', {
@@ -18,6 +18,10 @@ angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mg
         templateUrl: 'views/artist.add.html',
         controller: 'ArtistCtrl'
       })
+      .when('/listartist', {
+        templateUrl: 'views/artist.list.html',
+        controller: 'ListArtistCtrl'
+      })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
@@ -31,11 +35,11 @@ angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mg
         controller: 'PictureCtrl'
       })
       .when('/listpicture', {
-        templateUrl: 'views/listpictures.html',
+        templateUrl: 'views/picture.list.html',
         controller: 'ListPictureCtrl'
       })
       .when('/picture/:id/delete', {
-        templateUrl: 'views/listpictures.html',
+        templateUrl: 'views/picture.list.html',
         controller: 'ListPictureCtrl'
       })
       .when('/picture/:id/edit', {
@@ -43,7 +47,7 @@ angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mg
         controller: 'PictureEditCtrl'
       })
       .when('/picture/:id', {
-        templateUrl: 'views/displayPicture.html',
+        templateUrl: 'views/picture.display.html',
         controller: 'PictureDisplayCtrl'
       })
       .otherwise({

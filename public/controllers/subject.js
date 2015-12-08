@@ -1,6 +1,6 @@
 angular.module('MyApp')
   .controller('SubjectCtrl', ['$scope', '$rootScope', 'Subject', function ($scope, $rootScope, Subject) {
-   
+   // need to add these as mongo items as well
     $scope.yearData = {
       availableOptions: [
         { year: 2015 },
@@ -36,7 +36,7 @@ angular.module('MyApp')
     
     $scope.submitSubject = function () {
       //   var picture = new Picture();
-      console.log('at the client and about to add the picture \\\(^o^\)/');
+      //console.log('at the client and about to add the picture \\\(^o^\)/');
       //nameS = this.pictureName;
       
       Subject.addSubject({
